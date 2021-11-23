@@ -14,7 +14,7 @@
     </parent>
     <groupId>guru.spring</groupId>
     <artifactId>pet-clinic</artifactId>
-    <version>1.0.0</version>
+    <version>1.0.1-SNAPSHOT</version>
     <name>pet-clinic</name>
     <description>Pet clinic project for Spring Boot</description>
     <properties>
@@ -44,6 +44,6 @@
 
     <scm>
         <developerConnection>scm:git:git@github.com:yamuz/pet-clinic.git</developerConnection>
-      <tag>pet-clinic-1.0.1</tag>
+      <tag>pet-clinic-1.0.0</tag>
     </scm>
 </project>
