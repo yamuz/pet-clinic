@@ -30,26 +30,22 @@ public class BootLoader implements CommandLineRunner {
         Owner owner1 = new Owner();
         owner1.setFirstName("almaz");
         owner1.setLastName("abdray");
-        owner1.setId(1L);
         ownerService.save(owner1);
         
         Owner owner2 = new Owner();
         owner2.setFirstName("alima");
         owner2.setLastName("abdray");
-        owner2.setId(2L);
         ownerService.save(owner2);
         System.out.println("Loaded owners...");
 
         Vet vet1 = new Vet();
         vet1.setFirstName("Orhan");
         vet1.setLastName("pamuk");
-        vet1.setId(1L);
         vetService.save(vet1);
 
         Vet vet2 = new Vet();
         vet2.setFirstName("Selim");
         vet2.setLastName("Yamuz");
-        vet2.setId(2L);
         vetService.save(vet2);
         System.out.println("loaded vets...");
         
@@ -59,7 +55,7 @@ public class BootLoader implements CommandLineRunner {
 
         pet.setPetType(type);
         pet.setOwner(owner2);
-        pet.setId(1L);
+
         pet.setBirthDate( LocalDate.of(2012, 2 ,1));
 
     }
