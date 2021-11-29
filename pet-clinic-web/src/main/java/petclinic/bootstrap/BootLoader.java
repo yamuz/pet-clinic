@@ -36,7 +36,7 @@ public class BootLoader implements CommandLineRunner {
         Owner owner2 = new Owner();
         owner2.setFirstName("alima");
         owner2.setLastName("abdray");
-        owner2.setId(1L);
+        owner2.setId(2L);
         ownerService.save(owner2);
         System.out.println("Loaded owners...");
 
