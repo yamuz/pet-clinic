@@ -7,9 +7,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @Controller
 public class PetController {
 
-    @RequestMapping({"pet","pet/index","pet/index.html"})
+    @RequestMapping({"pets","pets/index","pets/index.html"})
     public String indexFun(Model model){
         //model.addAttribute("pets", )
-        return "pet/index";
+        return "pets/index";
     }
 }
