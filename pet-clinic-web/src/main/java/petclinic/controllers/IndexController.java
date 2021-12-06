@@ -19,4 +19,9 @@ public class IndexController {
         //return "redirect:" + redirectUrl;
        return "index";
     }
+
+    @RequestMapping("/oups")
+    public String oups(){
+        return "notimplemented";
+    }
 }
