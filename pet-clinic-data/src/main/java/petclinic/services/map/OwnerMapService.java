@@ -1,20 +1,21 @@
-package petclinic.map;
+package petclinic.services.map;
 
+import org.springframework.context.annotation.Profile;
 import org.springframework.stereotype.Service;
 import petclinic.model.Owner;
 import petclinic.model.Pet;
 import petclinic.services.OwnerService;
-import petclinic.services.PetService;
 
 import java.util.Set;
 
 @Service
-public class OwnerServiceMap extends AbstractMapService<Owner, Long>  implements OwnerService {
+@Profile("map")
+public class OwnerMapService extends AbstractMapService<Owner, Long>  implements OwnerService {
 
-    private PetServiceMap petService;
+    private PetMapService petService;
     private PetTypeMapService petTypeService;
 
-    public OwnerServiceMap(PetServiceMap petService, PetTypeMapService petTypeService) {
+    public OwnerMapService(PetMapService petService, PetTypeMapService petTypeService) {
         this.petService = petService;
         this.petTypeService = petTypeService;
     }

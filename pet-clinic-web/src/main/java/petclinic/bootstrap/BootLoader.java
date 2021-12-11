@@ -3,11 +3,9 @@ package petclinic.bootstrap;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.stereotype.Component;
 import petclinic.model.*;
-import petclinic.services.OwnerService;
-import petclinic.services.PetTypeService;
-import petclinic.services.SpecialityService;
-import petclinic.services.VetService;
+import petclinic.services.*;
 
+import java.sql.Date;
 import java.time.LocalDate;
 
 
@@ -18,12 +16,14 @@ public class BootLoader implements CommandLineRunner {
     public final VetService vetService;
     public final PetTypeService petTypeService;
     public final SpecialityService specialityService;
+    public final VisitService visitService;
 
-    public BootLoader(OwnerService ownerService, VetService vetService, PetTypeService petTypeService, SpecialityService specialityService) {
+    public BootLoader(OwnerService ownerService, VetService vetService, PetTypeService petTypeService, SpecialityService specialityService, VisitService visitService) {
         this.ownerService = ownerService;
         this.vetService = vetService;
         this.petTypeService = petTypeService;
         this.specialityService = specialityService;
+        this.visitService = visitService;
     }
 
     @Override
@@ -96,5 +96,20 @@ public class BootLoader implements CommandLineRunner {
         vet2.getSpecialities().add(dentistrySaved);
         vetService.save(vet2);
         System.out.println("loaded vets...");
+
+        //VISITS
+        Visit visit = new Visit();
+        visit.setDescription("visit 1");
+        visit.setLocalDate(Date.valueOf(LocalDate.of(2010, 11, 20)));
+        visit.setPet(pet1);
+        visitService.save(visit);
+
+        Visit visit2 = new Visit();
+        visit2.setDescription("visit 2");
+        visit2.setLocalDate(Date.valueOf(LocalDate.of(2009, 10, 20)));
+        visit2.setPet(pet1);
+        visitService.save(visit2);
+        System.out.println("visits saved");
+
     }
 }

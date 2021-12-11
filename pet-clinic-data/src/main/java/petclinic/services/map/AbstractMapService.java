@@ -1,4 +1,4 @@
-package petclinic.map;
+package petclinic.services.map;
 
 import petclinic.model.BaseEntity;
 
