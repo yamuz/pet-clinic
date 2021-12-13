@@ -36,78 +36,60 @@ public class BootLoader implements CommandLineRunner {
 
     private void loadData() {
         //PET TYPE
-        PetType dog = new PetType();
-        dog.setName("dog");
+        PetType dog = PetType.builder().name("dog").build();
         PetType savedDogType = petTypeService.save(dog);
-        PetType cat = new PetType();
-        dog.setName("cat");
+
+        PetType cat = PetType.builder().name("cat").build();
         PetType savedCatType = petTypeService.save(cat);
 
         //OWNERS
-        Owner ownerAlmaz = new Owner();
-        ownerAlmaz.setFirstName("almaz");
-        ownerAlmaz.setLastName("abdray");
-        ownerAlmaz.setAddress("Remizovka 12");
-        ownerAlmaz.setCity("Almaty");
-        ownerAlmaz.setTelephone("8708243249384");
-        Pet pet1 = new Pet();
-        pet1.setPetType(savedDogType);
-        pet1.setOwner(ownerAlmaz);
-        pet1.setName("Rocco");
-        pet1.setBirthDate( LocalDate.of(2012, 2 ,1));
+        Owner ownerAlmaz = Owner.builder().firstName("almaz").lastName("abdray")
+                .address("Remizovka 12").city("Almaty").telephone("8708243249384")
+                .build();
+
+        Pet pet1 = Pet.builder().petType(savedDogType).name("Rocco").owner(ownerAlmaz)
+                .birthDate(LocalDate.of(2012, 2 ,1)).build();
         ownerAlmaz.getPets().add(pet1);
         ownerService.save(ownerAlmaz);
 
-        Owner ownerAlima = new Owner();
-        ownerAlima.setFirstName("alima");
-        ownerAlima.setLastName("abdray");
-        ownerAlima.setAddress("arbat 12");
-        ownerAlima.setCity("Moscow");
-        ownerAlima.setTelephone("5465765767");
-        Pet alimasCat = new Pet();
-        alimasCat.setPetType(savedCatType);
-        alimasCat.setName("Zoska");
-        alimasCat.setBirthDate(LocalDate.of(2018, 2, 7));
-        alimasCat.setOwner(ownerAlima);
+        Owner ownerAlima = Owner.builder().firstName("alima").lastName("abdray")
+                .address("arbat 12").city("Moscow").telephone("5465765767")
+                .build();
+
+
+        Pet alimasCat  = Pet.builder().petType(savedCatType).name("Zoska").owner(ownerAlima)
+                .birthDate(LocalDate.of(2018, 2, 7)).build();
         ownerAlima.getPets().add(alimasCat);
         ownerService.save(ownerAlima);
         System.out.println("Loaded owners...");
 
         //SPECIALITIES
-        Speciality specialityRadiology = new Speciality();
-        specialityRadiology.setDescription("Radiology");
+        Speciality specialityRadiology = Speciality.builder().description("Radiology").build();
         Speciality radiologySaved = specialityService.save(specialityRadiology);
-        Speciality specialityDentistry = new Speciality();
-        specialityDentistry.setDescription("Dentistry");
+        Speciality specialityDentistry =Speciality.builder().description("Dentistry").build();
         Speciality dentistrySaved = specialityService.save(specialityDentistry);
-        Speciality specialitySurgery = new Speciality();
-        specialitySurgery.setDescription("Surgery");
+        Speciality specialitySurgery = Speciality.builder().description("Surgery").build();
         Speciality surgerySaved = specialityService.save(specialitySurgery);
 
-        Vet vet1 = new Vet();
-        vet1.setFirstName("Orhan");
-        vet1.setLastName("pamuk");
+        //VETS
+        Vet vet1 = Vet.builder().firstName("Orhan").lastName("pamuk").build();
         vet1.getSpecialities().add(radiologySaved);
         vetService.save(vet1);
 
-        Vet vet2 = new Vet();
-        vet2.setFirstName("Selim");
-        vet2.setLastName("Yamuz");
+        Vet vet2 = Vet.builder().firstName("Selim").lastName("Yamuz").build();;
         vet2.getSpecialities().add(dentistrySaved);
         vetService.save(vet2);
         System.out.println("loaded vets...");
 
         //VISITS
-        Visit visit = new Visit();
-        visit.setDescription("visit 1");
-        visit.setLocalDate(Date.valueOf(LocalDate.of(2010, 11, 20)));
-        visit.setPet(pet1);
+        Visit visit = Visit.builder().description("visit 1").
+                localDate(Date.valueOf(LocalDate.of(2010, 11, 20)))
+                .pet(pet1).build();
         visitService.save(visit);
 
-        Visit visit2 = new Visit();
-        visit2.setDescription("visit 2");
-        visit2.setLocalDate(Date.valueOf(LocalDate.of(2009, 10, 20)));
-        visit2.setPet(pet1);
+        Visit visit2 = Visit.builder().description("visit 2").
+                localDate(Date.valueOf(LocalDate.of(2009, 11, 20)))
+                .pet(pet1).build();
         visitService.save(visit2);
         System.out.println("visits saved");
 
