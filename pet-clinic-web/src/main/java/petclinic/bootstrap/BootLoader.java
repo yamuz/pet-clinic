@@ -7,6 +7,8 @@ import petclinic.services.*;
 
 import java.sql.Date;
 import java.time.LocalDate;
+import java.util.HashSet;
+import java.util.Set;
 
 
 @Component
@@ -43,18 +45,26 @@ public class BootLoader implements CommandLineRunner {
         PetType savedCatType = petTypeService.save(cat);
 
         //OWNERS
+        Set<Pet> petsAlmaz = new HashSet<>();
         Owner ownerAlmaz = Owner.builder().firstName("almaz").lastName("abdray")
                 .address("Remizovka 12").city("Almaty").telephone("8708243249384")
-                .build();
+                .pets(petsAlmaz).build();
 
         Pet pet1 = Pet.builder().petType(savedDogType).name("Rocco").owner(ownerAlmaz)
                 .birthDate(LocalDate.of(2012, 2 ,1)).build();
-        ownerAlmaz.getPets().add(pet1);
-        ownerService.save(ownerAlmaz);
 
+        if (ownerAlmaz.getPets()!= null)
+            ownerAlmaz.getPets().add(pet1);
+        try {
+            ownerService.save(ownerAlmaz);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        Set<Pet> petsAlima = new HashSet<>();
         Owner ownerAlima = Owner.builder().firstName("alima").lastName("abdray")
                 .address("arbat 12").city("Moscow").telephone("5465765767")
-                .build();
+                .pets(petsAlima).build();
 
 
         Pet alimasCat  = Pet.builder().petType(savedCatType).name("Zoska").owner(ownerAlima)
@@ -76,7 +86,7 @@ public class BootLoader implements CommandLineRunner {
         vet1.getSpecialities().add(radiologySaved);
         vetService.save(vet1);
 
-        Vet vet2 = Vet.builder().firstName("Selim").lastName("Yamuz").build();;
+        Vet vet2 = Vet.builder().firstName("Selim").lastName("Yamuz").build();
         vet2.getSpecialities().add(dentistrySaved);
         vetService.save(vet2);
         System.out.println("loaded vets...");
