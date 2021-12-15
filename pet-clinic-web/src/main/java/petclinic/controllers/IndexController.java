@@ -8,10 +8,7 @@ import petclinic.services.OwnerService;
 @Controller
 public class IndexController {
 
-    @Autowired
-    OwnerService ownerService;
-
-    @RequestMapping({"","/","index","index.html"})
+    @RequestMapping({"/index","/index.html"})
     public String indexFun(){
 
        // String redirectUrl = request.getScheme() + "://www.yahoo.com";
