@@ -12,8 +12,7 @@ import java.util.Set;
 @Service
 @Profile("springdatajpa")
 public class OwnerJpaService implements OwnerService {
-    //private PetServiceMap petService;
-    //private PetTypeMapService petTypeService;
+
     private OwnerRepository ownerRepository;
 
     public OwnerJpaService(OwnerRepository ownerRepository) {
