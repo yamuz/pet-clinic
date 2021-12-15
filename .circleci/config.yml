@@ -18,7 +18,7 @@ jobs:
     steps:
       # Checkout the code as the first step.
       - checkout
-      - run: mvn install _DskipTests
+      - run: mvn install -DskipTests
       # Use mvn clean and package as the standard maven build phase
       - run:
           name: Build
