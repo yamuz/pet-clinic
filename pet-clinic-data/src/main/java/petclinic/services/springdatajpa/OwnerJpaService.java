@@ -7,6 +7,7 @@ import petclinic.repositories.OwnerRepository;
 import petclinic.services.OwnerService;
 
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 @Service
@@ -39,6 +40,12 @@ public class OwnerJpaService implements OwnerService {
         Set<Owner> set = new HashSet<>();
         ownerRepository.findAll().forEach(set::add);
         return set;
+    }
+
+    @Override
+    public List<Owner> findAllByLastNameLike(String lastName) {
+
+        return ownerRepository.findAllByLastNameLike(lastName);
     }
 
     @Override

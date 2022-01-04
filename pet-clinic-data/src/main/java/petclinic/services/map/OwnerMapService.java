@@ -6,7 +6,10 @@ import petclinic.model.Owner;
 import petclinic.model.Pet;
 import petclinic.services.OwnerService;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Set;
+import java.util.stream.Collectors;
 
 @Service
 @Profile("map")
@@ -59,6 +62,14 @@ public class OwnerMapService extends AbstractMapService<Owner, Long>  implements
     @Override
     public Set<Owner> findAll() {
         return super.findAll();
+    }
+
+    @Override
+    public List<Owner> findAllByLastNameLike(String lastName) {
+         return super.findAll()
+                .stream()
+                .filter(owner -> owner.getLastName().contains(lastName))
+                .collect(Collectors.toList());
     }
 
     @Override
