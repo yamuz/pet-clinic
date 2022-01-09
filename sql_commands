@@ -1,0 +1,7 @@
+grant select on dev_user.* to 'dev_user'@'172.17.0.2';
+grant insert on dev_user.* to 'dev_user'@'172.17.0.2';
+grant delete on dev_user.* to 'dev_user'@'172.17.0.2';
+grant update on dev_user.* to 'dev_user'@'172.17.0.2';
+
+create user 'dev_user'@'172.17.0.2' identified by 'guru';
+create user 'prod_user'@'172.17.0.2' identified by 'guru';
